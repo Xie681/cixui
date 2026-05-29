@@ -1,0 +1,23 @@
+# Flask API 服务依赖
+flask==2.3.2
+flask-cors==4.0.0
+requests==2.31.0
+Pillow==9.5.0
+
+# PyTorch (根据你的CUDA版本选择)
+# CPU版本
+# torch==1.13.1
+# torchvision==0.14.1
+
+# GPU版本 (CUDA 11.7)
+torch>=0.4.1
+torchvision>=0.2.1
+
+# 其他依赖
+numpy>=1.14.1
+scipy>=1.1.0
+dominate>=2.3.1
+visdom>=0.1.8.3
+
+# 工具库
+tqdm

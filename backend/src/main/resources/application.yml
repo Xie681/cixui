@@ -1,0 +1,105 @@
+spring:
+  profiles:
+    active: dev  # 默认激活开发环境
+  application:
+    name: cixiu
+
+  # Flyway 配置
+  flyway:
+    enabled: true
+    baseline-on-migrate: true  # 首次运行时自动创建基线
+    baseline-version: 1  # 基线版本号
+    locations: classpath:db/migration  # migration 脚本位置
+    encoding: UTF-8
+    validate-on-migrate: true  # 迁移时验证
+    out-of-order: false  # 不允许乱序执行
+
+  # 文件上传配置
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      enabled: true
+
+  # Jackson配置
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: false
+
+# MyBatis-Plus配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+# JWT配置
+jwt:
+  secret: cixiu-secret-key-2025-jinyue-embroidery-system
+  expiration: 86400000  # 24小时（毫秒）
+  refresh-expiration: 604800000  # 7天（毫秒）
+
+# AI服务配置
+ai:
+  service:
+    timeout: 30000
+    image-to-embroidery: /api/image-to-embroidery
+    text-to-embroidery: /api/text-to-embroidery
+    optimize: /api/optimize
+
+# LangChain4j 阿里云百炼配置
+langchain4j:
+  dashscope:
+    chat-model:
+      api-key: ${DASHSCOPE_API_KEY:your-api-key}
+      model-name: qwen-plus
+      temperature: 0.7
+      max-tokens: 2000
+      top-p: 0.8
+    embedding-model:
+      api-key: ${DASHSCOPE_API_KEY:your-api-key}
+      model-name: text-embedding-v2  # 千问向量模型
+    image-generation:
+      model: wanx-v1  # 可选: wanx-v1, wanx-sketch-v1, wanx-style-repaint-v1
+
+# Elasticsearch 配置
+elasticsearch:
+  host: localhost
+  port: 9200
+  username: elastic
+  password: your-password  # 如果没有密码可以留空
+  index-name: knowledge_embeddings
+
+# SpringDoc配置
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+
+# 服务器配置
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+# 日志配置
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n"

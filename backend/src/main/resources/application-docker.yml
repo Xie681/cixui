@@ -1,0 +1,72 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://mysql:3306/cixiu?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true}
+    username: ${SPRING_DATASOURCE_USERNAME:cixiu}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+
+  data:
+    redis:
+      host: ${SPRING_DATA_REDIS_HOST:redis}
+      port: ${SPRING_DATA_REDIS_PORT:6379}
+      password: ${SPRING_DATA_REDIS_PASSWORD:}
+      database: ${SPRING_DATA_REDIS_DATABASE:0}
+      timeout: ${SPRING_DATA_REDIS_TIMEOUT:5000}
+      lettuce:
+        pool:
+          max-active: 8
+          max-wait: -1
+          max-idle: 8
+          min-idle: 0
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+aliyun:
+  oss:
+    endpoint: ${ALIYUN_OSS_ENDPOINT:oss-cn-beijing.aliyuncs.com}
+    access-key-id: ${ALIYUN_OSS_ACCESS_KEY_ID}
+    access-key-secret: ${ALIYUN_OSS_ACCESS_KEY_SECRET}
+    bucket-name: ${ALIYUN_OSS_BUCKET:}
+    custom-domain: ${ALIYUN_OSS_CUSTOM_DOMAIN:}
+
+ai:
+  service:
+    url: ${AI_SERVICE_URL:http://ai-service:8001}
+
+file:
+  storage:
+    type: ${FILE_STORAGE_TYPE:local}
+    local:
+      path: ${FILE_STORAGE_LOCAL_PATH:/app/uploads}
+      public-url: ${FILE_STORAGE_PUBLIC_URL:/uploads}
+      internal-url: ${FILE_STORAGE_LOCAL_INTERNAL_URL:http://frontend}
+
+langchain4j:
+  dashscope:
+    chat-model:
+      api-key: ${DASHSCOPE_API_KEY}
+      model-name: qwen-plus
+      vision-model-name: qwen-vl-plus
+      temperature: 0.7
+      max-tokens: 2000
+      top-p: 0.8
+    embedding-model:
+      api-key: ${DASHSCOPE_API_KEY}
+      model-name: text-embedding-v2
+    image-generation:
+      model: wanx-v1
+
+elasticsearch:
+  host: ${ELASTICSEARCH_HOST:elasticsearch}
+  port: ${ELASTICSEARCH_PORT:9200}
+  scheme: ${ELASTICSEARCH_SCHEME:http}
+  username: ${ELASTICSEARCH_USERNAME:}
+  password: ${ELASTICSEARCH_PASSWORD:}
+  index-name: ${ELASTICSEARCH_INDEX_NAME:knowledge_embeddings}
+
+logging:
+  level:
+    root: INFO
+    com.jinyue.cixiu: DEBUG

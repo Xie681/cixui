@@ -1,0 +1,43 @@
+----------------- Options ---------------
+             aspect_ratio: 1.0                           
+               batch_size: 1                             
+          checkpoints_dir: ./checkpoints                 
+                crop_size: 1024                          	[default: 256]
+                 dataroot: ./datasets/embs               	[default: None]
+             dataset_mode: unaligned_test                	[default: unaligned]
+                direction: AtoB                          
+          display_winsize: 256                           
+                    epoch: latest                        
+                     eval: False                         
+                  gpu_ids: 0                             
+                init_gain: 0.02                          
+                init_type: normal                        
+                 input_nc: 3                             
+                  isTrain: False                         	[default: None]
+                load_iter: 0                             	[default: 0]
+                load_size: 1024                          	[default: 256]
+         max_dataset_size: inf                           
+                    model: AttenEmbGAN                   	[default: test]
+               n_layers_D: 3                             
+                     name: AttnEmbGAN_st_5               	[default: experiment_name]
+                      ndf: 64                            
+                     netD: basic                         
+                     netG: resnet_9blocks                
+                      ngf: 64                            
+               no_dropout: True                          
+                  no_flip: False                         
+                     norm: instance                      
+                    ntest: inf                           
+                 num_test: 100000                        	[default: 50]
+              num_threads: 4                             
+                output_nc: 3                             
+                    phase: test                          
+               preprocess: resize_and_crop               
+              results_dir: ./results/                    
+                 saveDisk: True                          	[default: False]
+                 saveFake: False                         
+           serial_batches: False                         
+                   suffix:                               
+                  verbose: False                         
+               white_edge: 128                           
+----------------- End -------------------

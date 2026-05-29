@@ -1,0 +1,22 @@
+[Unit]
+Description=Gitee Webhook Service for Auto Deployment
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/cixiu/deploy
+Environment="WEBHOOK_SECRET=change-this-secret-to-random-string"
+Environment="DEPLOY_SCRIPT=/opt/cixiu/deploy/auto-deploy.sh"
+Environment="PROJECT_DIR=/opt/cixiu"
+Environment="ALLOWED_BRANCHES=master"
+Environment="DEPLOY_TIMEOUT=600"
+Environment="LOG_LEVEL=INFO"
+ExecStart=/usr/bin/python3 /opt/cixiu/deploy/webhook_server.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

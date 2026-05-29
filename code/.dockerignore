@@ -1,0 +1,7 @@
+checkpoints
+uploads
+results
+datasets
+__pycache__
+*.pyc
+.idea

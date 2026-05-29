@@ -1,0 +1,30 @@
+package com.jinyue.cixiu.common.config;
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * OpenAPI配置
+ */
+@Configuration
+public class OpenApiConfig {
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("刺绣定制系统API文档")
+                        .version("1.0.0")
+                        .description("刺绣定制系统后端接口文档")
+                        .contact(new Contact()
+                                .name("噤玥团队")
+                                .email("contact@jinyue.com"))
+                        .license(new License()
+                                .name("Apache 2.0")
+                                .url("https://www.apache.org/licenses/LICENSE-2.0.html")));
+    }
+}

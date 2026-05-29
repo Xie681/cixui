@@ -1,0 +1,76 @@
+spring:
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cixiu?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:change_me_mysql_password}
+
+
+  # Redis配置
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: ${SPRING_DATA_REDIS_PASSWORD:change_me_redis_password}
+      database: 0
+      timeout: 5000
+      lettuce:
+        pool:
+          max-active: 8
+          max-wait: -1
+          max-idle: 8
+          min-idle: 0
+
+# MyBatis-Plus配置（开发环境显示SQL日志）
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 阿里云OSS配置（开发环境）
+aliyun:
+  oss:
+    # OSS服务地域节点（例如：oss-cn-hangzhou.aliyuncs.com）
+    endpoint: oss-cn-beijing.aliyuncs.com
+    # AccessKey ID
+    access-key-id: ${ALIYUN_OSS_ACCESS_KEY_ID:change_me_access_key_id}
+    # AccessKey Secret
+    access-key-secret: ${ALIYUN_OSS_ACCESS_KEY_SECRET:change_me_access_key_secret}
+    # Bucket名称
+    bucket-name: ${ALIYUN_OSS_BUCKET:change_me_bucket}
+    # 自定义域名（可选，如果配置了CDN加速域名）
+    custom-domain:
+
+# AI服务配置（开发环境）
+ai:
+  service:
+    url: http://localhost:8001
+
+# LangChain4j 阿里云百炼配置（开发环境）
+langchain4j:
+  dashscope:
+    chat-model:
+      api-key: ${DASHSCOPE_API_KEY:change_me_dashscope_api_key}
+      model-name: qwen-plus  # 文本对话模型
+      vision-model-name: qwen-vl-plus  # 多模态视觉模型（支持图片理解）
+      temperature: 0.7
+      max-tokens: 2000
+      top-p: 0.8
+    embedding-model:
+      api-key: ${DASHSCOPE_API_KEY:change_me_dashscope_api_key}
+      model-name: text-embedding-v2
+    image-generation:
+      model: wanx-v1  # 通义万相文生图模型
+
+elasticsearch:
+  host: 127.0.0.1         # 或者 192.168.1.101
+  port: 9200
+  scheme: http             # 注意使用 http
+  username:                 # 空着
+  password:                 # 空着
+  index-name: knowledge_embeddings
+
+logging:
+  level:
+    root: INFO
+    com.jinyue.cixiu: DEBUG
