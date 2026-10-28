@@ -1,8 +1,5 @@
 # Backend
-.env
-服务器.txt
-__pycache__/
-*.pyc
+
 backend/HELP.md
 backend/target/
 backend/.mvn/wrapper/maven-wrapper.jar
@@ -45,3 +42,15 @@ build/
 backend/nul
 ### cc ###
 .claude
+.env
+.env.*
+!.env.example
+服务器.txt
+__pycache__/
+*.pyc
+/data/uploads/
+node_modules/
+/code/uploads/
+/code/results/
+__pycache__/
+*.pyc
