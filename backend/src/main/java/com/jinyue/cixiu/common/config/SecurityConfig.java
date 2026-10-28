@@ -1,9 +1,11 @@
+
 package com.jinyue.cixiu.common.config;
 
 import com.jinyue.cixiu.common.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,9 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-/**
- * Spring Security配置
- */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -25,38 +24,84 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    /**
-     * 密码加密器
-     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    /**
-     * 安全过滤器链
-     */
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)
+            throws Exception {
+
         http
-                // 禁用CSRF（前后端分离不需要）
-                .csrf(AbstractHttpConfigurer::disable)
-                // 禁用Session（使用JWT）
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                // 配置请求授权
-                .authorizeHttpRequests(auth -> auth
-                        // 放行健康检查
-                        .requestMatchers("/health").permitAll()
-                        // 放行Swagger文档
-                        .requestMatchers("/doc.html", "/webjars/**", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
-                        // 放行认证接口
-                        .requestMatchers("/api/auth/**").permitAll()
-                        // 其他请求暂时都放行（后续根据需要配置）
-                        .anyRequest().permitAll()
+            .csrf(AbstractHttpConfigurer::disable)
+            .httpBasic(AbstractHttpConfigurer::disable)
+            .formLogin(AbstractHttpConfigurer::disable)
+            .sessionManagement(session ->
+                session.sessionCreationPolicy(
+                    SessionCreationPolicy.STATELESS
                 )
-                // 添加JWT过滤器
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+            )
+            .authorizeHttpRequests(auth -> auth
+
+                // CORS预检请求
+                .requestMatchers(HttpMethod.OPTIONS, "/**")
+                .permitAll()
+
+                // 健康检查
+                .requestMatchers("/api/health", "/health")
+                .permitAll()
+
+                // 登录与注册
+                .requestMatchers("/api/auth/**")
+                .permitAll()
+
+                // 公开的基础商品配置
+                .requestMatchers(
+                    HttpMethod.GET,
+                    "/api/customize/styles",
+                    "/api/customize/fabrics",
+                    "/api/customize/threads"
+                ).permitAll()
+
+                // 公开报价计算
+                .requestMatchers(
+                    HttpMethod.POST,
+                    "/api/customize/calculate-price"
+                ).permitAll()
+
+                // 知识库管理仅允许管理员操作
+                .requestMatchers(
+                    HttpMethod.POST,
+                    "/api/knowledge/upload"
+                ).hasRole("ADMIN")
+
+                .requestMatchers(
+                    HttpMethod.DELETE,
+                    "/api/knowledge/documents/**"
+                ).hasRole("ADMIN")
+
+                // 预留管理员专用接口
+                .requestMatchers("/api/admin/**")
+                .hasRole("ADMIN")
+
+                // 其余接口必须登录
+                .anyRequest().authenticated()
+            )
+            .exceptionHandling(ex -> ex
+                .authenticationEntryPoint(
+                    (request, response, e) ->
+                        response.sendError(401)
+                )
+                .accessDeniedHandler(
+                    (request, response, e) ->
+                        response.sendError(403)
+                )
+            )
+            .addFilterBefore(
+                jwtAuthenticationFilter,
+                UsernamePasswordAuthenticationFilter.class
+            );
 
         return http.build();
     }
