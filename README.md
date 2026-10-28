@@ -1,11 +1,50 @@
-# 刺绣定制系统 (Embroidery Customization System)
+# 数字绣娘——AI驱动的刺绣个性化柔性定制与产业生态平台
 
-> 一个集成 AI 图像处理能力的现代化刺绣定制平台
+> 融合人工智能图像处理、智能刺绣设计与柔性定制服务，推动传统刺绣工艺与数字技术深度融合。
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.6-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![Vue](https://img.shields.io/badge/Vue.js-3.5.22-4FC08D.svg)](https://vuejs.org/)
 [![Python](https://img.shields.io/badge/Python-3.8+-3776AB.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+## 项目展示
+
+数字绣娘是一款面向刺绣个性化定制场景的AI智能设计与服务平台。
+
+系统采用 Vue 3、Spring Boot 和 Python AI 服务架构，支持图像上传、AI刺绣效果生成、个性化定制、智能报价及订单管理等功能。
+
+### 系统界面
+
+![数字绣娘系统首页](docs/images/home.png)
+
+### AI刺绣效果展示
+
+![AI刺绣效果展示](docs/images/ai-result.png)
+
+## 核心技术
+
+- **AI刺绣图像处理**：基于PyTorch与AttenEmbGAN模型，实现图像的刺绣风格效果生成。
+- **智能定制服务**：支持图片、文字等个性化定制需求。
+- **智能报价与订单管理**：结合设计复杂度、材料等因素进行报价和订单管理。
+- **前后端协同架构**：基于Vue 3、Spring Boot、Flask构建完整的业务与AI服务链路。
+
+## 系统运行演示
+
+演示视频：待补充
+
+## 安装与部署
+
+本项目支持Docker Compose部署。
+
+详细部署步骤请参阅：
+[DEPLOY.md](DEPLOY.md)
+
+## 代码说明
+
+- `frontend/`：前端页面与交互功能
+- `backend/`：后端业务服务
+- `code/`：Python AI算法与推理服务
+- `deploy/`：部署相关文件
 
 ## 项目简介
 
