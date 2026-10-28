@@ -75,6 +75,7 @@ services:
     container_name: cixiu-backend
     restart: always
     environment:
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required}
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-docker}
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE:-cixiu}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-cixiu}
