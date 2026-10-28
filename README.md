@@ -5,7 +5,7 @@
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.6-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![Vue](https://img.shields.io/badge/Vue.js-3.5.22-4FC08D.svg)](https://vuejs.org/)
 [![Python](https://img.shields.io/badge/Python-3.8+-3776AB.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 
 ## 项目展示
 
@@ -30,7 +30,7 @@
 
 ## 系统运行演示
 
-演示视频：待补充
+演示视频：尚待上传。完成真实系统录屏后，请在此处添加可公开访问的视频链接。
 
 ## 安装与部署
 
@@ -151,11 +151,11 @@ cixiu/
 │   │   ├── views/           # 页面组件
 │   │   └── utils/           # 工具函数
 │   ├── package.json
-│   ├── vite.config.js
+│   ├── vite.config.ts
 │   ├── .env.development     # 开发环境变量
 │   ├── .env.production      # 生产环境变量
 │   ├── README.md            # 前端文档
-│   └── QUICKSTART.md        # 开发设置指南
+│   └── INTEGRATION_GUIDE.md # 前端集成指南
 │
 ├── code/                    # Python AI 服务
 │   ├── api_server.py        # Flask API 服务器
@@ -170,7 +170,7 @@ cixiu/
 │   └── README_API.md        # AI 服务 API 文档
 │
 └── docs/                    # 项目文档
-    └── INTEGRATION_GUIDE.md # AI 服务集成指南
+    └── images/              # 项目展示截图
 ```
 
 ## 功能模块
@@ -276,7 +276,7 @@ npm install
 npm run dev
 
 # 4. 访问应用
-# 浏览器打开: http://localhost:5173
+# 浏览器打开: http://localhost:3000
 ```
 
 ### 三、AI 服务启动
@@ -579,9 +579,9 @@ Error: AI service unavailable
 - [后端详细文档](backend/README.md)
 - [前端开发指南](frontend/README.md)
 - [后端快速开始](backend/QUICKSTART.md)
-- [前端快速开始](frontend/QUICKSTART.md)
+- [前端快速开始](frontend/README.md)
 - [AI 服务 API](code/README_API.md)
-- [AI 集成指南](INTEGRATION_GUIDE.md)
+- [AI 集成指南](frontend/INTEGRATION_GUIDE.md)
 - [系统开发文档](backend/docs/刺绣定制系统开发文档.md)
 - [阿里云 OSS 配置](backend/docs/阿里云OSS配置说明.md)
 
@@ -618,12 +618,12 @@ Error: AI service unavailable
 
 ## 许可证
 
-本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
+本项目包含自主研发代码、第三方依赖、AI模型及相关数据资源。各部分的使用与授权范围正在核实，暂不统一声明采用MIT等开源许可证。
 
 ## 联系方式
 
-- 项目地址：[GitHub Repository](https://github.com/your-repo/cixiu)
-- 问题反馈：[Issues](https://github.com/your-repo/cixiu/issues)
+- 项目地址：[GitHub Repository](https://github.com/Xie681/cixui)
+- 问题反馈：[Issues](https://github.com/Xie681/cixui/issues)
 
 ---
 

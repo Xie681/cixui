@@ -1,3 +1,8 @@
+# Legacy training environment
+# 历史模型训练环境，仅供复现参考
+# 不代表当前Flask API服务的推荐部署环境
+# 当前Dockerfile使用Python 3.10
+# 实际依赖兼容性尚需验证
 name: pytorch-CycleGAN-and-pix2pix
 channels:
 - peterjc123

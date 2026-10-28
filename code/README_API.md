@@ -6,6 +6,14 @@
 
 ## 快速开始
 
+> **环境说明：**
+>
+> 当前Dockerfile采用Python 3.10，API依赖定义在requirements_api.txt中。
+>
+> environment.yml保留了早期模型训练所用环境，仅供历史复现参考，不建议直接用于当前API服务部署。
+>
+> 不同PyTorch版本对模型权重的兼容性需要进一步验证，尚不能保证全新环境一次部署成功。
+
 ### 1. 安装依赖
 
 ```bash

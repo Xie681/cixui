@@ -32,11 +32,12 @@ CREATE DATABASE IF NOT EXISTS cixiu
 exit
 ```
 
-## 步骤3：导入数据库表
+## 步骤3：数据库迁移（Flyway）
 
-```bash
-mysql -u root -p cixiu < src/main/resources/sql/schema.sql
-```
+数据库表结构由 Flyway 迁移文件维护，所在目录为 `src/main/resources/db/migration/`。
+项目在 `application.yml` 中启用了 Flyway。启动前请先检查数据库现状与迁移版本，避免重复手动导入。
+
+**安全提示：** `V7__insert_test_users.sql` 包含公开的测试账户。生产环境部署前必须隔离该测试数据，并核查真实数据库中的测试用户是否已停用。
 
 ## 步骤4：配置文件
 
@@ -101,7 +102,7 @@ mvn clean spring-boot:run
 
 ### 测试健康检查
 ```bash
-curl http://localhost:8080/health
+curl http://localhost:8080/api/health
 ```
 
 如果返回类似下面的JSON，说明启动成功：
